@@ -66,7 +66,7 @@ router.post('/reset-password', async (req, res) => {
         const data = jwt.verify(req.body.token, 'secret')
         const user = await Model.findOne({ email: data.email })
         if (data && data.email && user.token === req.body.token) {
-            await Model.updateOne({ email: data.email, password: req.body.newPassword, token: null })
+            await Model.updateOne({ email: data.email }, { password: req.body.newPassword, token: null })
             return res.status(201).json({ data: "password updated successfully" })
         }
         return res.status(404).json({ error: "Invalid link" })
