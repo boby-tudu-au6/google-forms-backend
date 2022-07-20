@@ -36,8 +36,8 @@ router.post('/login', async (req, res) => {
         if (data) {
             const token = jwt.sign({
                 name: data.name,
-                designation: data.designation,
-                email: data.email
+                email: data.email,
+                _id: data._id
             }, 'secret')
             return res.status(200).json({ data: token })
         }
